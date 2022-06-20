@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'bootsrap5',
     'cloudinary',
     'sass_processor',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

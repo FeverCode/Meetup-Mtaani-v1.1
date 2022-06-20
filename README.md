@@ -59,8 +59,6 @@ Live link to the project
 
 ## Api Endpoints
 
-
-
 ## Project Objectives
 
 + The project has a functioning authentication system
@@ -124,4 +122,3 @@ SOFTWARE.
 ## Authors Info
 
 LinkedIn - [https://www.linkedin.com/in/gedion-onsongo-112543210/]
-
