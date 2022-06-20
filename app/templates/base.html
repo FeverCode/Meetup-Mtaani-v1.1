@@ -1,0 +1,42 @@
+{% load bootstrap5 %}
+{% load static %}
+{% load sass_tags %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% if title %}
+    <title>MeetUp Mtaani{{title}}</title>
+    {% else %}
+    <title>MeetUp Mtaani{{title}}</title>
+    {% endif %}
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     {% block styles %}
+      {% bootstrap_css %}
+   
+    <!-- CSS only -->
+    <link href="{% sass_src 'scss/styles.scss' %}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock %}
+</head>
+
+<body>
+    {% include "navbar.html" %}
+
+    {% block content %}  {%endblock%}
+
+    {% block scripts %}
+   
+        <!-- JavaScript Bundle with Popper -->
+
+     {% bootstrap_javascript %}
+    {% endblock %}
+
+    
+</body>
+
+</html>
