@@ -1,8 +1,91 @@
-{%extends 'base.html'%}
+{% extends 'registration/base.html'%}
 {% load bootstrap5 %}
 {% load static%}
 {%block content%}
 
-<h1>works</h>
+<div style="margin-top:100px; " class="container card"
+    style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; border-radius:10px;">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="/media/signUp.png" style="width: 100%; height:100%" />
+        </div>
+        <div class="col-md-6 mt-3">
+            <div class="content" style="background-color: none;color:#A5694B">
+                <form method="POST">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <div id="form_errors">
+                            {% for key, value in form.errors.items %}
+                            <strong>{{ value }}</strong>
+                            {% endfor %}
+                        </div>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endif %}
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="small mb-1">Username</label>
+                                {{ form.Username }}
+                            </div>
+                        </div>
+                        </div>
+                        <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="small mb-1">Email</label>
+                                {{ form.Email }}
+                            </div>
+                        </div>
+                        </div>
+                        <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="small mb-1">Phone Number</label>
+                                {{ form.Phone_Number }}
+                            </div>
+                        </div>
+                        </div>
+                    
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="small mb-1">Password</label>
+                                {{ form.Password }}
+                                {{ form.errors.password }}
+                            </div>
+                        </div>
+                        </div>
+                        <div class="form-row">
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label class="small mb-1">Confirm Password</label>
+                                {{ form.Confirm_Password }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-4 mb-0">
+                        <button type="submit" class="btn mt-2 btn-outline-info button-17">Sign Up</button><br><br>
+                    </div>
+                </form>
+                <div class="text-center mb-4">
+            <small class="text-muted text-center">
+              Already have an account? <a class="ml-2" style="color:#A5694B" href="#">Log
+                in</a>
+            </small>
+          </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
