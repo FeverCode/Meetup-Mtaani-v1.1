@@ -5,6 +5,7 @@ from . import views
 from .views import RegisterView, CustomLoginView
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm
+from django.conf.urls import url
 
 urlpatterns = [
     path('',views.index ),
@@ -13,6 +14,7 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='users-register'),
     path('login/', CustomLoginView.as_view(redirect_authenticated_user=True, template_name='registration/login.html',authentication_form=LoginForm), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
 ]
 
 if settings.DEBUG:

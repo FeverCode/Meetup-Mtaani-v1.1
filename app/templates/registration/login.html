@@ -34,8 +34,8 @@
                             <div class="form-row">
                                 <div class="col-md-10 offset-md-1">
                                     <div class="form-group">
-                                        <a href="#" class="btn btn-link btn-lg active btn-block">Sign in with GitHub</a>
-                                        <a href="#" class="btn btn-link btn-lg active btn-block">Sign in with Google</a>
+                                        <a style="color:#A5694B" href="{% url 'social:begin' 'github' %}" class="btn btn-link btn-lg active btn-block">Sign in with GitHub</a>
+                                        <a style="color:#A5694B" href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-link btn-lg active btn-block">Sign in with Google</a>
                                         <hr>
                                         <p class="text-center"><strong>OR</strong></p>
                                         <hr>
@@ -73,8 +73,8 @@
                 </div>
                 <div class="card-footer text-center">
                     <div class="small">
-                        <a href="{% url 'users-register' %}">Don't have an account yet? Go to signup</a><br>
-                        <a href="#"><i>Forgot Password?</i></a>
+                        <a style="color:#A5694B" href="{% url 'users-register' %}">Don't have an account yet? Go to signup</a><br>
+                        <a  style="color:#A5694B" href="#"><i>Forgot Password?</i></a>
                     </div>
 
 
