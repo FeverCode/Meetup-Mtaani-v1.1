@@ -34,7 +34,7 @@
                 </l1>
                 <li>
                     <a style="color:#A5694B; font-family: Italiana; font-weight: 500; font-size: 20px;"
-                        class="nav-link text-uppercase" href="#">Logout</a>
+                        class="nav-link text-uppercase" href="{% url 'logout' %}">Logout</a>
                 </li>
             </ul>
         </div>
@@ -42,9 +42,9 @@
         {% comment %} {% else%} {% endcomment %}
         <div class="navbar-nav">
             <a style="color:#A5694B; font-family: Italiana; font-weight: 500; font-size: 20px;"
-                class="nav-item nav-link text-uppercase" href="#">Sign Up</a>
+                class="nav-item nav-link text-uppercase" href="{% url 'users-register'%}">Sign Up</a>
             <a style="color:#A5694B; font-family: Italiana; font-weight: 500; font-size: 20px;"
-                class="nav-item nav-link text-uppercase" href="#">Login</a>
+                class="nav-item nav-link text-uppercase" href="{% url 'login' %}">Login</a>
             
         </div>
         {% comment %} {% endif %} {% endcomment %}

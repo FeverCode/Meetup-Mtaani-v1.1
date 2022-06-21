@@ -12,72 +12,75 @@
         <div class="col-md-6 mt-3">
             <div class="content" style="background-color: none;color:#A5694B">
                 <form method="POST">
-                    {% csrf_token %}
-                    {% if form.errors %}
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        <div id="form_errors">
-                            {% for key, value in form.errors.items %}
-                            <strong>{{ value }}</strong>
-                            {% endfor %}
-                        </div>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    {% endif %}
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="small mb-1">Username</label>
-                                {{ form.Username }}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom-mb-4 mt-4 mx-auto ps-5">SIGN UP</legend>
+                        {% csrf_token %}
+                        {% if form.errors %}
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <div id="form_errors">
+                                {% for key, value in form.errors.items %}
+                                <strong>{{ value }}</strong>
+                                {% endfor %}
                             </div>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
+                        {% endif %}
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1">Username</label>
+                                    {{ form.Username }}
+                                </div>
+                            </div>
                         </div>
                         <div class="form-row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="small mb-1">Email</label>
-                                {{ form.Email }}
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1">Email</label>
+                                    {{ form.Email }}
+                                </div>
                             </div>
-                        </div>
                         </div>
                         <div class="form-row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="small mb-1">Phone Number</label>
-                                {{ form.Phone_Number }}
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1">Phone Number</label>
+                                    {{ form.Phone_Number }}
+                                </div>
                             </div>
                         </div>
-                        </div>
-                    
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="small mb-1">Password</label>
-                                {{ form.Password }}
-                                {{ form.errors.password }}
-                            </div>
-                        </div>
-                        </div>
-                        <div class="form-row">
-                        <div class="col-md-6">
 
-                            <div class="form-group">
-                                <label class="small mb-1">Confirm Password</label>
-                                {{ form.Confirm_Password }}
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1">Password</label>
+                                    {{ form.Password }}
+                                    {{ form.errors.password }}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group mt-4 mb-0">
-                        <button type="submit" class="btn mt-2 btn-outline-info button-17">Sign Up</button><br><br>
-                    </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label class="small mb-1">Confirm Password</label>
+                                    {{ form.Confirm_Password }}
+                                </div>
+                            </div>
+                        </div>
+                        </fieldset>
+                        <div class="form-group mt-4 mb-0">
+                            <button type="submit" class="btn mt-2 btn-outline-info button-17">Sign Up</button><br><br>
+                        </div>
                 </form>
                 <div class="text-center mb-4">
-            <small class="text-muted text-center">
-              Already have an account? <a class="ml-2" style="color:#A5694B" href="#">Log
-                in</a>
-            </small>
-          </div>
+                    <small class="text-muted text-center">
+                        Already have an account? <a class="ml-2" style="color:#A5694B" href="{% url 'login' %}">Log
+                            in</a>
+                    </small>
+                </div>
 
 
 

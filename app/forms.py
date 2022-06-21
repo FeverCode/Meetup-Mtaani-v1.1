@@ -42,3 +42,23 @@ class Meta:
     model = User
     fields = ['Username', 'Email', 'Phone_Number',
               'Password', 'Confirm_Password']
+
+
+class LoginForm(AuthenticationForm):
+    Email = forms.EmailField(required=True,
+                             widget=forms.TextInput(attrs={'placeholder': 'Email',
+                                                           'class': 'form-control form-control-lg',
+                                                           }))
+    password = forms.CharField(max_length=50,
+                               required=True,
+                               widget=forms.PasswordInput(attrs={'placeholder': 'Password',
+                                                                 'class': 'form-control form-control-lg',
+                                                                 'data-toggle': 'password',
+                                                                 'id': 'password',
+                                                                 'name': 'password',
+                                                                 }))
+    remember_me = forms.BooleanField(required=False)
+
+    class Meta:
+        model = User
+        fields = ['Email', 'password', 'remember_me']
