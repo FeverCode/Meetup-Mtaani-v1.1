@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'meetup.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mtaani',
+        'NAME': 'meetup',
         'USER': 'moringa',
         'PASSWORD': 'Access',
         'HOST': 'localhost',

@@ -1,0 +1,141 @@
+{%extends 'users/base.html'%}
+{% load bootstrap5 %}
+{% load static%}
+{%block content%}
+
+<div style="margin-top:100px;" class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="wrapper d-flex">
+                <div class="sidebar">
+                    <div class="align-items-center flex-wrap">
+                        <ul class="nav ms-sm-4">
+                            <div class="nav-end ms-sm-auto">
+
+                                <button class="btn">
+                                    <img class="rounded-circle account-img" src="" alt="" id="profile-photo">
+
+                                </button>
+                            </div>
+                            <li class="nav-item">
+                                <a class="nav-link " aria-current="page" href="#">
+                                    <span class="fas fa-th-list"></span>
+                                    <small> <span style="color: #A5694B;"> username </span> </small>
+                                </a>
+                            </li>
+                            </br>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page">
+                                    <span class="fas fa-th-list"></span>
+
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/" style="color: #A5694B;">
+                                    <span class="fas fa-th-list"></span>
+                                    Home
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#" style="color: #A5694B;">
+                                    <span class="fas fa-th-list"></span>
+                                    Add Reservation:
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#" style="color: #A5694B;">
+                                    <span class="fas fa-th-list"></span>
+                                    Update account
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#" style="color: #A5694B;">
+                                    <span class="fas fa-th-list"></span>
+                                    Dashboard
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a></a>
+
+                                </a></a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <!--Dashboard-->
+            <div class="content my-5 d-flex  flex-wrap">
+                <div class="list  py-3 tableNm">
+                    <div class="row m-0 px-2 pb-1 border-bottom">
+                        <div class="col-lg-12 d-flex align-items-center flex-wrap">
+                            <div class="label mx-1">ACTIVE RESERVATIONS FOR: username </div>
+                        </div>
+                        <div class="col-lg-6 d-flex align-items-center justify-content-lg-end">
+
+                            <div class="btn btn-default mx-2"><span class="fas fa-minus"></span></div>
+                        </div>
+                    </div>
+                    <div class="table-responsive-lg mt-4 mx-3">
+                        <table class="table">
+                            {% comment %} {% for reservation in reservation %} {% endcomment %}
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex flex-column">
+                                            <div class="blue-label">Email: | Username:
+                                            </div>
+                                            <div class="fs-08">| Reserved for: | Deal:
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column text-center">
+
+                                            <div class="blue-label">
+
+                                                <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="22"
+                                                        height="22" fill="currentColor" class="bi bi-x-circle"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                        <path
+                                                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                                    </svg></a>
+                                                <a href="">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-pencil-square"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {% comment %} {% endfor %} {% endcomment %}
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--end of center dashboard-->
+        </div>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}

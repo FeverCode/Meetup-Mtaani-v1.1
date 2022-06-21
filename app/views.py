@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.views import View
 from .forms import RegisterForm, LoginForm
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -66,3 +67,9 @@ def about(request):
 
 def deals(request):
     return render(request, 'viewDeals.html')
+
+
+
+@login_required
+def profile(request):
+    return render(request, 'users/profile.html')

@@ -17,8 +17,7 @@ class RegisterForm(UserCreationForm):
                              widget=forms.TextInput(attrs={'placeholder': 'Email',
                                                            'class': 'form-control',
                                                            }))
-    Phone_Number = forms.IntegerField(max_value=10,
-                                      required=True,
+    Phone_Number = forms.IntegerField(required=True,
                                       widget=forms.NumberInput(attrs={'placeholder':'',
                                                                       'class': 'form-control',
                                                                       }))

@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 class MtaaniDeals(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
+    photo = CloudinaryField('Image')
     price = models.DecimalField(max_digits=20, decimal_places=2)
     location = models.CharField(max_length=255)
     
@@ -50,12 +51,12 @@ class Reservation(models.Model):
         self.save()
     
 class Profile(models.Model):
-    username = models.OneToOneField(User, on_delete=models.CASCADE,unique=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     email= models.EmailField(max_length=255, unique=True)
     photo = CloudinaryField('image', default='https://res.cloudinary.com/fevercode/image/upload/v1654534329/default_n0r7rf.png')
     name = models.CharField(max_length=255)
-    Tel = models.IntegerField(null=False, unique=True)
-    reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE, blank=True)
+    Tel = models.IntegerField(null=True, unique=True)
+    reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE, null=True, blank=True)
     
     def __str__(self):
         return f'{self.user.username} Profile'

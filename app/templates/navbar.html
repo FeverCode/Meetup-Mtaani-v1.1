@@ -22,7 +22,7 @@
                         class="nav-link text-uppercase" href="{% url 'deals' %}">Our Deals</a>
                 </li>
             </ul>
-        {% if current_user.is_authenticated %}
+        {% comment %} {% if current_user.is_authenticated %} {% endcomment %}
             <ul class="navbar-nav ps-5">
                 <li class="nav-item active">
                     <a style="color:#A5694B; font-family: Inter; font-weight: 500;font-size: 20px;"
@@ -30,7 +30,7 @@
                 </li>
                 <l1>
                     <a style="color:#A5694B; font-family: Italiana; font-weight: 500; font-size: 20px;"
-                    class="nav-item nav-link text-uppercase" href="#">Dashboard</a>
+                    class="nav-item nav-link text-uppercase" href="{% url 'users-profile' %}">Dashboard</a>
                 </l1>
                 <li>
                     <a style="color:#A5694B; font-family: Italiana; font-weight: 500; font-size: 20px;"
@@ -39,7 +39,7 @@
             </ul>
         </div>
 
-        {% else%}
+        {% comment %} {% else%} {% endcomment %}
         <div class="navbar-nav">
             <a style="color:#A5694B; font-family: Italiana; font-weight: 500; font-size: 20px;"
                 class="nav-item nav-link text-uppercase" href="{% url 'users-register'%}">Sign Up</a>
@@ -47,6 +47,6 @@
                 class="nav-item nav-link text-uppercase" href="{% url 'login' %}">Login</a>
             
         </div>
-        {% endif %}
+        {% comment %} {% endif %} {% endcomment %}
     </div>
 </nav>
