@@ -61,3 +61,29 @@ class LoginForm(AuthenticationForm):
     class Meta:
         model = User
         fields = ['Email', 'password', 'remember_me']
+
+
+class UpdateUserForm(forms.ModelForm):
+    username = forms.CharField(max_length=100,
+                               required=True,
+                               widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(required=True,
+                             widget=forms.TextInput(attrs={'class': 'form-control'}))
+    
+    phone_number = forms.IntegerField(required=True,
+                                      widget=forms.NumberInput(attrs={'placeholder': '',
+                                                                      'class': 'form-control',
+                                                                      }))
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'phone_number']
+
+
+class UpdateProfileForm(forms.ModelForm):
+    photo = forms.ImageField(widget=forms.FileInput(
+        attrs={'class': 'form-control-file'}))
+
+    class Meta:
+        model = Profile
+        fields = ['photo']

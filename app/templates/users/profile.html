@@ -13,14 +13,14 @@
                             <div class="nav-end ms-sm-auto">
 
                                 <button class="btn">
-                                    <img class="rounded-circle account-img" src="" alt="" id="profile-photo">
+                                    <img class="rounded-circle account-img" src="{{user.profile.photo.url}}" alt="" id="profile-photo">
 
                                 </button>
                             </div>
                             <li class="nav-item">
                                 <a class="nav-link " aria-current="page" href="#">
                                     <span class="fas fa-th-list"></span>
-                                    <small> <span style="color: #A5694B;"> username </span> </small>
+                                    <small> <span style="color: #A5694B;">{{user.username}}</span> </small>
                                 </a>
                             </li>
                             </br>
@@ -45,7 +45,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#" style="color: #A5694B;">
+                                <a class="nav-link active" aria-current="page" href="{% url 'edit-profile' %}" style="color: #A5694B;">
                                     <span class="fas fa-th-list"></span>
                                     Update account
                                 </a>
@@ -75,7 +75,7 @@
                 <div class="list  py-3 tableNm">
                     <div class="row m-0 px-2 pb-1 border-bottom">
                         <div class="col-lg-12 d-flex align-items-center flex-wrap">
-                            <div class="label mx-1">ACTIVE RESERVATIONS FOR: username </div>
+                            <div class="label mx-1">ACTIVE RESERVATIONS FOR:{{user.username}} </div>
                         </div>
                         <div class="col-lg-6 d-flex align-items-center justify-content-lg-end">
 

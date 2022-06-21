@@ -52,10 +52,11 @@ class Reservation(models.Model):
     
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    email= models.EmailField(max_length=255, unique=True)
+    email= models.EmailField(max_length=255)
     photo = CloudinaryField('image', default='https://res.cloudinary.com/fevercode/image/upload/v1654534329/default_n0r7rf.png')
     name = models.CharField(max_length=255)
     Tel = models.IntegerField(null=True, unique=True)
+    location = models.CharField(max_length=255 )
     reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE, null=True, blank=True)
     
     def __str__(self):
