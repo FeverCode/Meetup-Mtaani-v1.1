@@ -1,8 +1,56 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
 {% load bootstrap5 %}
 {% load static%}
-{%block content%}
+{% block content %}
 
-<h1>works</h>
+
+<section>
+    <div style="background-color:#fff" class="container-fluid">
+        <img src="/media/aboutUsBanner.png" alt=""
+            style="width: 100%; height:100%;" />
+    </div>
+
+    <div class="container mt-5 pt-3 text-center">
+        <h2 style="color:#A5694B; font-family: Italiana; font-weight: 700;">Our Background</h2>
+        <p style="line-height:35px ;">MeetUp Mtaani is a virtual vents platform, social network and community to have fun, stay fit and learn new
+            things. We're a small team with a huge passion for making a positive social difference, creating happiness,
+            wellness and belonging through purposeful events and community</p>
+    </div>
+  <div class="space mt-5 pt-4"></div>
+   
+    <div class="container mt-5">
+        <div class="row justify-content-between align-items-center">
+       
+            <div class="col-lg-6 col-md-6">
+                <img src="/media/vision.png" class="img-fluid" alt="" style="height:250px;">
+            </div> 
+    
+            <div class="col-lg-6 col-md-6 mobile-img">
+                <h2 style="color:#A5694B; font-family: Italiana; font-weight: 700;" class="text-center">Our Vision</h2>
+                <p style="line-height:35px ;">Our Vision is to perform and deliver excellent quality service to our clients. Providing them
+                    unforgettable travel,enjoyable, with gauranteed services that exceed their expectations</p>
+            </div>
+          
+          </div> 
+    </div>
+
+    
+    <div class="container mt-5">
+        <div class="row justify-content-between align-items-center">
+       
+            <div class="col-lg-6 col-md-6">
+                <h2 style="color:#A5694B; font-family: Italiana; font-weight: 700;" class="text-center">Our Mission</h2>
+                <p style="line-height:35px ;">Our Mission is to perform and deliver excellent quality service to our clients. Providing them
+                    unforgettable travel,enjoyable, with gauranteed services that exceed their expectations</p>
+
+              </div> 
+    
+            <div class="col-lg-6 col-md-6 mobile-img">
+                <img src="/media/mission.png" class="img-fluid" alt="" style="height:250px;">
+            </div>
+          
+          </div> 
+    </div>
+</section>
 
 {% endblock %}
