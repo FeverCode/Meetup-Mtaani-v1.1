@@ -15,6 +15,7 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 from decouple import config
+from django.conf import PASSWORD_RESET_TIMEOUT_DAYS_DEPRECATED_MSG
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -175,6 +176,7 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 30
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
+PASSWORD_RESET_DONE_REDIRECT_URL = 'login'
 
 # social auth configs for github
 SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
