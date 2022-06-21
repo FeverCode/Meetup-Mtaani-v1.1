@@ -11,7 +11,7 @@
             <ul class="navbar-nav ps-5">
                 <li class="nav-item active">
                     <a style="color:#A5694B; font-family: Inter; font-weight: 500;font-size: 20px;"
-                        class="nav-link text-uppercase" href="#">Home <span class="sr-only"></span></a>
+                        class="nav-link text-uppercase" href="/">Home <span class="sr-only"></span></a>
                 </li>
                 <li>
                     <a style="color:#A5694B; font-family: Italiana; font-weight: 500;font-size: 20px;"
@@ -19,7 +19,7 @@
                 </li>
                 <li>
                     <a style="color:#A5694B; font-family: Italiana; font-weight: 500; font-size: 20px;"
-                        class="nav-link text-uppercase" href="#">Our Deals</a>
+                        class="nav-link text-uppercase" href="{% url 'deals' %}">Our Deals</a>
                 </li>
             </ul>
         {% comment %} {% if current_user.is_authenticated %} {% endcomment %}
