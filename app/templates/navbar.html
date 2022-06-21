@@ -1,0 +1,52 @@
+<nav style="background-color: #fff; margin-bottom: -3em;" class="nav navbar navbar-expand-lg navbar-dark shadow-lg" id="nav">
+    <a class="navbar-brand" href="/">
+        <h1> <img src="/media/logo.png" class="img-fluid" alt="..."></h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
+        aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon bg-warning"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="navbarToggle">
+        <div class="navbar-nav mx-auto">
+            <ul class="navbar-nav ps-5">
+                <li class="nav-item active">
+                    <a style="color:#A5694B; font-family: Inter; font-weight: 500;font-size: 20px;"
+                        class="nav-link text-uppercase" href="#">Home <span class="sr-only"></span></a>
+                </li>
+                <li>
+                    <a style="color:#A5694B; font-family: Italiana; font-weight: 500;font-size: 20px;"
+                        class="nav-link text-uppercase" href="#">About Us</a>
+                </li>
+                <li>
+                    <a style="color:#A5694B; font-family: Italiana; font-weight: 500; font-size: 20px;"
+                        class="nav-link text-uppercase" href="#">Our Deals</a>
+                </li>
+            </ul>
+        {% comment %} {% if current_user.is_authenticated %} {% endcomment %}
+            <ul class="navbar-nav ps-5">
+                <li class="nav-item active">
+                    <a style="color:#A5694B; font-family: Inter; font-weight: 500;font-size: 20px;"
+                        class="nav-link text-uppercase" href="#">Add Reservation</a>
+                </li>
+                <l1>
+                    <a style="color:#A5694B; font-family: Italiana; font-weight: 500; font-size: 20px;"
+                    class="nav-item nav-link text-uppercase" href="#">Dashboard</a>
+                </l1>
+                <li>
+                    <a style="color:#A5694B; font-family: Italiana; font-weight: 500; font-size: 20px;"
+                        class="nav-link text-uppercase" href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+        {% comment %} {% else%} {% endcomment %}
+        <div class="navbar-nav">
+            <a style="color:#A5694B; font-family: Italiana; font-weight: 500; font-size: 20px;"
+                class="nav-item nav-link text-uppercase" href="#">Sign Up</a>
+            <a style="color:#A5694B; font-family: Italiana; font-weight: 500; font-size: 20px;"
+                class="nav-item nav-link text-uppercase" href="#">Login</a>
+            
+        </div>
+        {% comment %} {% endif %} {% endcomment %}
+    </div>
+</nav>

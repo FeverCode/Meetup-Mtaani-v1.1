@@ -18,16 +18,23 @@
       {% bootstrap_css %}
    
     <!-- CSS only -->
-    <link href="{% sass_src 'scss/styles.scss' %}" rel="stylesheet" type="text/css" />
+    <link href="{% sass_src 'scss/style.scss' %}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+     
     {% endblock %}
 </head>
 
 <body>
     {% include "navbar.html" %}
 
-    {% block content %}  {%endblock%}
+    {% block content %}  {% endblock %}
+
+     {% block footer %}
+  <div class="card-footer text-center bg-dark mt-5 mb-0">
+    <p style="font-family: Italiana;" class="text-light">&copy;2022 MeetUp Mtaani All Rights Reserved.</p>
+  </div>
+  {% endblock %}
 
     {% block scripts %}
    
