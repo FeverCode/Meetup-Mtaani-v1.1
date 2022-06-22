@@ -1,14 +1,20 @@
 from django.conf import settings
 from django.conf.urls.static import static
+from django.db import router
 from django.urls import path, include
 from . import views
 from .views import RegisterView, CustomLoginView, profile
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm
 from django.conf.urls import url
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register('deals', views.DealsViewSet,  basename="deals")
 
 urlpatterns = [
     path('',views.index ),
+    path('api/', include(router.urls)),
     path('aboutus/',views.about, name='about'),
     path('deals/',views.deals, name='deals'),
     path('register/', RegisterView.as_view(), name='users-register'),

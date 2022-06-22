@@ -1,77 +1,49 @@
-{% extends 'base.html' %}
+{% extends 'users/base.html' %}
 {% load bootstrap5 %}
 {% load static%}
 {% block content %}
-
-<div style="margin-top:200px;" class="container text-center">
-    <div class="mb-5 pt-2" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;border-radius:10px">
-        <div class="row pt-3">
-            <div class="col-sm-10">
-                <div class="media">
-                    <div class="row">
-                        <div class="col"></div>
-                        <div class="col ms-3">
-                            <img class="rounded-circle account-img" src="{{ user.profile.photo.url}}">
-                        </div>
-
-                        <div class="col pt-4 ">
-                            <div class="media-body">
-                                <h2 class="account-heading" style="color: #A5694B;">{{ user.username }}</h2>
-                                <p class="text-secondary">{{ user.email }}</p>
-                            </div>
-                        </div>
-                        <div class="col"></div>
-                    </div>
-
-                </div>
-                {% if user_form.errors %}
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    <div id="form_errors">
-                        {% for key, value in user_form.errors.items %}
-                        <strong>{{ value }}</strong>
-                        {% endfor %}
-                    </div>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                {% endif %}
-                <div class="form-content">
-                    <form method="post" enctype="multipart/form-data">
-                        <fieldset class="form-group">
-                            <legend class="border-bottom mb-4 text-center">Update Account Info</legend>
-                            {% csrf_token %}
-                            <div class="form-row">
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label class="small mb-1">Username:</label>
-                                        {{ user_form.username }}
-                                        <label class="small mb-1">Email:</label>
-                                        {{ user_form.email }}
-                                        <label class="small mb-1">Phone Number:</label>
-                                        {{ user_form.phone_number }}
-                                    </div>
-                                    <div class="form-group">
-                                        <a href="#">Change Password</a>
-                                        <hr>
-                                        <label class="small mb-1">Change Avatar:</label>
-                                        {{ profile_form.photo }}
-                                    </div>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <br><br>
-                            <button type="submit" class="btn btn-outline-info button-17">Save Changes</button>
-                            <button type="reset" class="btn btn-outline-info button-17">Reset</button>
-                    </form>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-        </div>
+<div style="margin-top:100px;" class="container">
+ <div class="row my-3 p-3">
+        <img class="rounded-circle account-img" src="{{ user.profile.photo.url }} " style="cursor: pointer;" width="150" height="150"/>
     </div>
-    <div class="col-sm-2"> </div>
+    {% if user_form.errors %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <div id="form_errors">
+                {% for key, value in user_form.errors.items %}
+                    <strong>{{ value }}</strong>
+                {% endfor %}
+            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+    <div class="form-content">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="small mb-1">Username:</label>
+                            {{ user_form.username }}
+                        <label class="small mb-1">Email:</label>
+                            {{ user_form.email }}
+                    </div>
+                    <div class="form-group">
+                        <a href="#">Change Password</a>
+                        <hr>
+                        <label class="small mb-1">Change Avatar:</label>
+                        {{ profile_form.avatar }}
+                    </div>
+                    <label class="small mb-1">Bio:</label> {{ profile_form.bio }}
+                </div>
+            </div>
+            <br><br>
+            <button type="submit" class="btn btn-dark btn-lg">Save Changes</button>
+            <button type="reset" class="btn btn-dark btn-lg">Reset</button>
+        </form>
+    </div>
 </div>
-
 
 
 

@@ -8,27 +8,33 @@ from .models import *
 
 class RegisterForm(UserCreationForm):
     # fields we want to include and customize in our form
-    Username = forms.CharField(max_length=100,
+    first_name = forms.CharField(max_length=100,
+                                 required=True,
+                                 widget=forms.TextInput(attrs={'placeholder': 'First Name',
+                                                               'class': 'form-control',
+                                                               }))
+    last_name = forms.CharField(max_length=100,
+                                required=True,
+                                widget=forms.TextInput(attrs={'placeholder': 'Last Name',
+                                                              'class': 'form-control',
+                                                              }))
+    username = forms.CharField(max_length=100,
                                required=True,
                                widget=forms.TextInput(attrs={'placeholder': 'Username',
                                                              'class': 'form-control',
                                                              }))
-    Email = forms.EmailField(required=True,
+    email = forms.EmailField(required=True,
                              widget=forms.TextInput(attrs={'placeholder': 'Email',
                                                            'class': 'form-control',
                                                            }))
-    Phone_Number = forms.IntegerField(required=True,
-                                      widget=forms.NumberInput(attrs={'placeholder':'',
-                                                                      'class': 'form-control',
-                                                                      }))
-    Password = forms.CharField(max_length=50,
+    password1 = forms.CharField(max_length=50,
                                 required=True,
                                 widget=forms.PasswordInput(attrs={'placeholder': 'Password',
                                                                   'class': 'form-control',
                                                                   'data-toggle': 'password',
                                                                   'id': 'password',
                                                                   }))
-    Confirm_Password = forms.CharField(max_length=50,
+    password2 = forms.CharField(max_length=50,
                                 required=True,
                                 widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password',
                                                                   'class': 'form-control',
@@ -36,22 +42,22 @@ class RegisterForm(UserCreationForm):
                                                                   'id': 'password',
                                                                   }))
 
-
-class Meta:
-    model = User
-    fields = ['Username', 'Email', 'Phone_Number',
-              'Password', 'Confirm_Password']
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username',
+                  'email', 'password1', 'password2']
 
 
 class LoginForm(AuthenticationForm):
-    Email = forms.EmailField(required=True,
-                             widget=forms.TextInput(attrs={'placeholder': 'Email',
-                                                           'class': 'form-control form-control-lg',
-                                                           }))
+    username = forms.CharField(max_length=100,
+                               required=True,
+                               widget=forms.TextInput(attrs={'placeholder': 'Username',
+                                                             'class': 'form-control',
+                                                             }))
     password = forms.CharField(max_length=50,
                                required=True,
                                widget=forms.PasswordInput(attrs={'placeholder': 'Password',
-                                                                 'class': 'form-control form-control-lg',
+                                                                 'class': 'form-control',
                                                                  'data-toggle': 'password',
                                                                  'id': 'password',
                                                                  'name': 'password',
@@ -60,7 +66,7 @@ class LoginForm(AuthenticationForm):
 
     class Meta:
         model = User
-        fields = ['Email', 'password', 'remember_me']
+        fields = ['username', 'password', 'remember_me']
 
 
 class UpdateUserForm(forms.ModelForm):
@@ -69,21 +75,18 @@ class UpdateUserForm(forms.ModelForm):
                                widget=forms.TextInput(attrs={'class': 'form-control'}))
     email = forms.EmailField(required=True,
                              widget=forms.TextInput(attrs={'class': 'form-control'}))
-    
-    phone_number = forms.IntegerField(required=True,
-                                      widget=forms.NumberInput(attrs={'placeholder': '',
-                                                                      'class': 'form-control',
-                                                                      }))
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'phone_number']
+        fields = ['username', 'email']
 
 
 class UpdateProfileForm(forms.ModelForm):
-    photo = forms.ImageField(widget=forms.FileInput(
+    avatar = forms.ImageField(widget=forms.FileInput(
         attrs={'class': 'form-control-file'}))
+    bio = forms.CharField(widget=forms.Textarea(
+        attrs={'class': 'form-control', 'rows': 5}))
 
     class Meta:
         model = Profile
-        fields = ['photo']
+        fields = ['avatar', 'bio']

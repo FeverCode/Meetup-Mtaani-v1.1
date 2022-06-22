@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'sass_processor',
     'rest_framework',
     'social_django',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -147,6 +148,13 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -176,7 +184,6 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 30
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
-PASSWORD_RESET_DONE_REDIRECT_URL = 'login'
 
 # social auth configs for github
 SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')

@@ -1,9 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views import View
+
+from app.models import Deals
 from .forms import RegisterForm, LoginForm, UpdateUserForm, UpdateProfileForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
+from rest_framework import viewsets
+from .serializer import *
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 
@@ -85,9 +90,15 @@ def edit_profile(request):
             user_form.save()
             profile_form.save()
             messages.success(request, 'Your profile is updated successfully')
-            return redirect(to='users-profile')
+            return redirect(to='profile')
     else:
         user_form = UpdateUserForm(instance=request.user)
         profile_form = UpdateProfileForm(instance=request.user.profile)
 
     return render(request, 'users/edit-profile.html', {'user_form': user_form, 'profile_form': profile_form})
+
+
+class DealsViewSet(viewsets.ModelViewSet):
+    queryset = Deals.objects.all()
+    serializer_class = DealsSerializer
+    # permission_classes = [IsAuthenticated]

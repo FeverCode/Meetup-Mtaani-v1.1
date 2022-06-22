@@ -22,7 +22,7 @@
                         class="nav-link text-uppercase" href="{% url 'deals' %}">Our Deals</a>
                 </li>
             </ul>
-        {% comment %} {% if current_user.is_authenticated %} {% endcomment %}
+        {% if user.is_authenticated %}
             <ul class="navbar-nav ps-5">
                 <li class="nav-item active">
                     <a style="color:#A5694B; font-family: Inter; font-weight: 500;font-size: 20px;"
@@ -34,12 +34,12 @@
                 </l1>
                 <li>
                     <a style="color:#A5694B; font-family: Italiana; font-weight: 500; font-size: 20px;"
-                        class="nav-link text-uppercase" href="/">Logout</a>
+                        class="nav-link text-uppercase" href="{% url 'logout' %}">Logout</a>
                 </li>
             </ul>
         </div>
 
-        {% comment %} {% else%} {% endcomment %}
+        {% else%}
         <div class="navbar-nav">
             <a style="color:#A5694B; font-family: Italiana; font-weight: 500; font-size: 20px;"
                 class="nav-item nav-link text-uppercase" href="{% url 'users-register'%}">Sign Up</a>
@@ -47,6 +47,6 @@
                 class="nav-item nav-link text-uppercase" href="{% url 'login' %}">Login</a>
             
         </div>
-        {% comment %} {% endif %} {% endcomment %}
+        {% endif %}
     </div>
 </nav>

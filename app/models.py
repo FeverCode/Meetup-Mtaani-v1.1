@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class MtaaniDeals(models.Model):
+class Deals(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     photo = CloudinaryField('Image')
@@ -58,7 +58,7 @@ class Profile(models.Model):
     Tel = models.IntegerField(null=True, unique=True)
     location = models.CharField(max_length=255 )
     reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE, null=True, blank=True)
-    
+    bio = models.TextField(max_length=500, default='This is my bio')
     def __str__(self):
         return f'{self.user.username} Profile'
 
