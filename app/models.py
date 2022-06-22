@@ -5,9 +5,13 @@ from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 
 # Create your models here.
-
+DEALS_CHOICES = [
+    ('She is mine deals', 'She is mine deals'),
+    ('Picnic in a Nick', 'Picnic in a Nick'),
+    ('Worksapce deals', 'Worksapce deals'),
+]
 class Deals(models.Model):
-    name = models.CharField(max_length=255)
+    deal = models.CharField(max_length=255, choices=DEALS_CHOICES, blank=True)
     description = models.TextField()
     photo = CloudinaryField('Image')
     price = models.DecimalField(max_digits=20, decimal_places=2)
@@ -16,22 +20,23 @@ class Deals(models.Model):
     def __str__(self):
             return self.name
         
-    def create_MtaaniDeals(self):
+    def create_Deals(self):
         self.save()
         
-    def delete_MtaaniDeals(self):
+    def delete_Deals(self):
         self.delete()
         
-    def update_reservation(self, new_reservation):
+    def update_Deals(self, new_reservation):
         self.name = new_reservation
         self.save()
         
     @classmethod
     def search_by_name(cls, search_term):
-        mtaanideal = cls.objects.filter(name=search_term)
-        return mtaanideal
+        deal = cls.objects.filter(name=search_term)
+        return deal
 
 class Reservation(models.Model):
+    deal = models.ForeignKey(Deals, on_delete=models.SET_NULL, choices=DEALS_CHOICES, null=True)
     numberOfPeople = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField(null=False, blank=False, unique=True)

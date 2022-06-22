@@ -1,8 +1,9 @@
 from re import A
 from django.contrib import admin
-from .models import *
+from . import models
 
 # Register your models here.
-admin.site.register(Profile)
-admin.site.register(Reservation)
-admin.site.register(NewsLetterRecepients)
+admin.site.register(models.Deals)
+admin.site.register(models.Profile)
+admin.site.register(models.Reservation)
+admin.site.register(models.NewsLetterRecepients)

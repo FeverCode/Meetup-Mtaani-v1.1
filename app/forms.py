@@ -1,4 +1,6 @@
 from ast import Pass
+from dataclasses import field
+from pyexpat import model
 from tokenize import Number
 from django import forms
 from django.contrib.auth.models import User
@@ -82,11 +84,31 @@ class UpdateUserForm(forms.ModelForm):
 
 
 class UpdateProfileForm(forms.ModelForm):
-    avatar = forms.ImageField(widget=forms.FileInput(
+    photo = forms.ImageField(widget=forms.FileInput(
         attrs={'class': 'form-control-file'}))
     bio = forms.CharField(widget=forms.Textarea(
         attrs={'class': 'form-control', 'rows': 5}))
 
     class Meta:
         model = Profile
-        fields = ['avatar', 'bio']
+        fields = ['photo', 'bio']
+
+class ReservationForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['deal'].required = True
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['numberOfPeople'].required = True
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['date'].required = True
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['time'].required = True
+    class Meta:
+        model = Reservation
+        fields = ['deal', 'numberOfPeople','date', 'time']

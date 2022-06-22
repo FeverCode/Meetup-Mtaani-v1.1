@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views import View
-
-from app.models import Deals
-from .forms import RegisterForm, LoginForm, UpdateUserForm, UpdateProfileForm
+from django.urls import reverse_lazy
+from app.models import Deals, Reservation
+from .forms import RegisterForm, LoginForm, UpdateUserForm, UpdateProfileForm, ReservationForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
 from .serializer import *
 from rest_framework.permissions import IsAuthenticated
+from django.views.generic.edit import CreateView
 
 # Create your views here.
 
@@ -102,3 +103,10 @@ class DealsViewSet(viewsets.ModelViewSet):
     queryset = Deals.objects.all()
     serializer_class = DealsSerializer
     # permission_classes = [IsAuthenticated]
+
+
+def new_reservation(request):
+    form = ReservationForm()
+    return render(request, 'users/reservation.html', {'form': form})
+
+

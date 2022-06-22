@@ -39,7 +39,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#" style="color: #A5694B;">
+                                <a class="nav-link active" aria-current="page" href="{% url 'deals' %}" style="color: #A5694B;">
                                     <span class="fas fa-th-list"></span>
                                     Add Reservation:
                                 </a>
@@ -50,19 +50,6 @@
                                     Update account
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#" style="color: #A5694B;">
-                                    <span class="fas fa-th-list"></span>
-                                    Dashboard
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a></a>
-
-                                </a></a>
-                            </li>
-
 
                         </ul>
                     </div>
@@ -89,9 +76,9 @@
                                 <tr>
                                     <td>
                                         <div class="d-flex flex-column">
-                                            <div class="blue-label">Email: | Username:
+                                            <div class="blue-label">Email:{{user.email}} | Username: {{user.username}}
                                             </div>
-                                            <div class="fs-08">| Reserved for: | Deal:
+                                            <div class="fs-08">| Reserved for: | Deal: | Date: | Time: |
                                             </div>
                                         </div>
                                     </td>
@@ -99,8 +86,8 @@
                                         <div class="d-flex flex-column text-center">
 
                                             <div class="blue-label">
-
-                                                <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="22"
+                                                <!--Delete Reservatio-->
+                                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="22"
                                                         height="22" fill="currentColor" class="bi bi-x-circle"
                                                         viewBox="0 0 16 16">
                                                         <path
@@ -108,7 +95,8 @@
                                                         <path
                                                             d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
                                                     </svg></a>
-                                                <a href="">
+                                                    <!--Update Reservation-->
+                                                <a href="#">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         fill="currentColor" class="bi bi-pencil-square"
                                                         viewBox="0 0 16 16">
