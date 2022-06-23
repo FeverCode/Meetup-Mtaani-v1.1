@@ -150,7 +150,7 @@ def stk_push_success(request):
 	                transaction_desc, callback_url)
 	return JsonResponse(r.response_description, safe=False)
 
-
+@login_required
 def reservation(request):
     if request.method == 'POST':
         form = ReservationForm(request.POST, instance=request.user)

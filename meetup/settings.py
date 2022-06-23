@@ -187,7 +187,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 30
 
 
-LOGIN_REDIRECT_URL = 'edit-profile'
+LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
 
 # social auth configs for github
