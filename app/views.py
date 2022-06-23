@@ -92,15 +92,28 @@ def deals(request):
 def user_profile(request):
     profile = Profile.objects.all()
     reservations = Reservation.objects.all().order_by('id').reverse()
+    
     return render(request, 'users/profile.html', {'profile': profile, 'reservations': reservations})
 
 # class ProfileListView(ListView):
-#     model = Reservation
+#     model = Profile
+#     template_name = 'users/profile.html'
+#     context_object_name = 'profile-list'
     
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['now'] = timezone.now()
-#         return context
+# def get_context_data(self, *args, **kwargs):
+#     context = super(ProfileListView, self).get_context_data(*args, **kwargs)
+#     return context
+
+
+# class ReservationListView(ListView):
+#     model = Reservation
+#     template_name = 'users/profile.html'
+#     context_object_name = 'reservation-list'
+
+
+# def get_context_data(self, *args, **kwargs):
+#     context = super(ReservationListView, self).get_context_data(*args, **kwargs)
+#     return context
 
 
 @login_required
