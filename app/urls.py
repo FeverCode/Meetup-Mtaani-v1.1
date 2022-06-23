@@ -5,7 +5,7 @@ from django.urls import path, include
 
 from app.models import Profile
 from . import views
-from .views import RegisterView, CustomLoginView
+from .views import RegisterView, CustomLoginView, ReservationDeleteView, CreateReservationtView, UpdateReservationView
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm
 from django.conf.urls import url
@@ -29,8 +29,11 @@ urlpatterns = [
     path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'), name='password_reset_complete'),
     path('profile/', views.user_profile, name='profile'),
     path('edit/profile/', views.edit_profile, name='edit-profile'),
-    path('reservation/', views.reservation, name='reservation'),
-    # path('profile/',ReservationView.as_view(), name='reservation-detail'),
+    path('<int:pk>/delete', ReservationDeleteView.as_view(),name='delete-reservation'),
+    path('reservation/', CreateReservationtView.as_view(), name='reservation'),
+    path('reservation/<int:id>/edit',UpdateReservationView.as_view(), name='update-reservation')
+    # path('reservation/', views.reservation, name='reservation'),
+    # path('', ProfileListView.as_view(), name='article-list'),
     # path('daraja/stk-push/', views.stk_push_callback,name='mpesa_stk_push_callback'),
 
 ]

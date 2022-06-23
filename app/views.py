@@ -19,6 +19,8 @@ from django_daraja.mpesa.core import MpesaClient
 from decouple import config
 from datetime import datetime
 from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.utils import timezone
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -45,13 +47,15 @@ class RegisterView(View):
 
         if form.is_valid():
             form.save()
-
+              
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}')
+            messages.success(request, f'Account created for {username} with')
 
             return redirect(to='login')
 
         return render(request, self.template_name, {'form': form})
+    
+   
 
 
 # Class based view that extends from the built in login view to add a remember me functionality
@@ -79,7 +83,7 @@ def index(request):
 
 def about(request):
     return render(request, 'aboutUs.html')
-
+@login_required
 def deals(request):
     return render(request, 'viewDeals.html')
 
@@ -90,7 +94,13 @@ def user_profile(request):
     reservations = Reservation.objects.all().order_by('id').reverse()
     return render(request, 'users/profile.html', {'profile': profile, 'reservations': reservations})
 
-
+# class ProfileListView(ListView):
+#     model = Reservation
+    
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['now'] = timezone.now()
+#         return context
 
 
 @login_required
@@ -118,10 +128,6 @@ class DealsViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
 
-def new_reservation(request):
-    # form = ReservationForm()
-    return render(request, 'users/reservation.html')
-    # {'form': form}
 
 
 cl = MpesaClient()
@@ -149,22 +155,54 @@ def stk_push_success(request):
 	                transaction_desc, callback_url)
 	return JsonResponse(r.response_description, safe=False)
 
-@login_required
-def reservation(request):
-    if request.method == 'POST':
-        form = ReservationForm(request.POST, instance=request.user)
+# @login_required
+# def reservation(request):
+#     if request.method == 'POST':
+#         form = ReservationForm(request.POST, instance=request.user)
     
-        if form.is_valid():
-            form.save(commit=False)
-            form.user = request.user.profile
-            form.save()
-            messages.success(request, f'Reservation Successfully Created')
-            # prevents post get redirect pattern. sends a get request instead of post request
-            return redirect('profile')
-    else:
-        form = ReservationForm(instance=request.user)
-    context = {
-        'form': form,
+#         if form.is_valid():
+#             form.save(commit=False)
+#             form.user = request.user.profile
+#             form.save()
+#             messages.success(request, f'Reservation Successfully Created')
+#             # prevents post get redirect pattern. sends a get request instead of post request
+#             return redirect('profile')
+#     else:
+#         form = ReservationForm()
+#     context = {
+#         'form': form,
 
-    }
-    return render(request, 'users/reservation.html', context)
+#     }
+#     return render(request, 'users/reservation.html', context)
+
+class ReservationDeleteView(DeleteView):
+    model = Reservation
+    template_name = 'delete.html'
+    success_url = reverse_lazy('profile')
+    
+   
+class UpdateReservationView(UpdateView):
+      model = Reservation
+      form_class = ReservationForm
+      template_name = "users/reservation.html"
+      form_class = ReservationForm
+      
+      
+class CreateReservationtView(LoginRequiredMixin, CreateView):
+
+    model = Reservation
+    form_class = ReservationForm 
+    template_name = 'users/reservation.html'
+    success_url = reverse_lazy('profile')
+
+    #   ↓        ↓ method of the CreatePostView
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    #   ↓              ↓ method of the CreatePostView
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['tag_line'] = 'Create new post'
+        return data

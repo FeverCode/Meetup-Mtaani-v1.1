@@ -65,7 +65,7 @@ class Profile(models.Model):
     email= models.EmailField(max_length=255)
     photo = CloudinaryField('image', default='https://res.cloudinary.com/fevercode/image/upload/v1654534329/default_n0r7rf.png')
     name = models.CharField(max_length=255, blank=True)
-    phone_number = PhoneNumberField(unique=True, null=False, blank=False)
+    phone_number = PhoneNumberField(null=False, blank=False)
     location = models.CharField(max_length=255 )
     bio = models.TextField(max_length=500, default='This is my bio')
     

@@ -1,3 +1,4 @@
+import profile
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -26,15 +27,7 @@ class RegisterForm(UserCreationForm):
                              widget=forms.TextInput(attrs={'placeholder': 'Email',
                                                            'class': 'form-control',
                                                            }))
-    Tel = forms.EmailField(required=True,
-                             widget=forms.TextInput(attrs={'placeholder': 'Email',
-                                                           'class': 'form-control',
-                                                           }))
-    location = forms.CharField(max_length=100,
-                               required=True,
-                               widget=forms.TextInput(attrs={'placeholder': 'Location',
-                                                             'class': 'form-control',
-                                                             }))
+
     
     password1 = forms.CharField(max_length=50,
                                 required=True,
@@ -53,8 +46,8 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username',
-                  'email', 'location', 'password1', 'password2']
+        fields = ['first_name', 'last_name','username',
+                  'email','password1', 'password2']
 
 
 class LoginForm(AuthenticationForm):
