@@ -21,7 +21,7 @@
  MeetUp Mtaani is a community building webapp which gives people the opportunity to organise groups and host in-person events for people with similar interest at budget friendly rates.
 
 Live link to the project
-[MeetUp Mtaani](https://meetup-mtaani.herokuapp.com)
+[MeetUp Mtaani](https://mtaani-meetup.herokuapp.com/)
 
 ## Requirements
 
