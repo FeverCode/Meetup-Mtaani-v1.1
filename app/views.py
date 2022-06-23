@@ -116,7 +116,7 @@ def edit_profile(request):
 class DealsViewSet(viewsets.ModelViewSet):
     queryset = Deals.objects.all()
     serializer_class = DealsSerializer
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
 
 def new_reservation(request):
