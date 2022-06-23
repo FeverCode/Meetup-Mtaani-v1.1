@@ -1,17 +1,35 @@
 {% extends 'registration/base.html'%}
+{% load crispy_forms_tags %}
 {% load bootstrap5 %}
 {% load static%}
 {% block content %}
-<div style="margin-top:100px" class="container bg-light">
-    <form action="" method="post" enctype="multipart/form-data">
-      {%csrf_token%}
 
-      {% bootstrap_form form%}
-      <input type="submit" class="btn btn-success btn-lg" value="Reserve">
-    </form>
-     
-  </div>
 
+<div style="margin-top:100px;" class="container">
+   {% if form.errors %}
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <div id="form_errors">
+                                    {% for key, value in form.errors.items %}
+                                        <strong>{{ value }}</strong>
+                                    {% endfor %}
+                                </div>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endif %}
+  <!-- FORM HERE -->
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <legend class="border-bottom mt-3">Reservations</legend>
+      {{ form|crispy }}
+    </fieldset>
+    <div class="form-group text-center">
+      <button class="col-md-4 btn btn-dark" type="submit">Reserve</button>
+    </div>
+  </form>
+</div>
 
 
 

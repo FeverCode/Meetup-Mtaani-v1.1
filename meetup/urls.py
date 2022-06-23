@@ -16,9 +16,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
+from app import views
+from django.conf.urls import url
+
+
+test_patterns = [
+    url(r'^$', views.test, name='django_daraja_index'),
+    url(r'^oauth/success', views.oauth_success, name='test_oauth_success'),
+    url(r'^stk-push/success', views.stk_push_success,name='test_stk_push_success'),
+]
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("app.urls")),
+    path('', views.test,),
     path('api-token-auth/', obtain_auth_token),
+    url(r'^tests/', include(test_patterns)),
+    path('api/v1/', include('mpesa_api.urls')),
 ]

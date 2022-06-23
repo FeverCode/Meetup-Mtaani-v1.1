@@ -1,8 +1,11 @@
+from __future__ import unicode_literals
+from cgitb import reset
+from re import template
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views import View
 from django.urls import reverse_lazy
-from app.models import Deals, Reservation
+from app.models import Deals, Profile, Reservation
 from .forms import RegisterForm, LoginForm, UpdateUserForm, UpdateProfileForm, ReservationForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
@@ -10,6 +13,14 @@ from rest_framework import viewsets
 from .serializer import *
 from rest_framework.permissions import IsAuthenticated
 from django.views.generic.edit import CreateView
+
+from django_daraja.mpesa import utils
+from django.http import HttpResponse, JsonResponse
+from django.views.generic import View
+from django_daraja.mpesa.core import MpesaClient
+from decouple import config
+from datetime import datetime
+from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, DeleteView
 
 # Create your views here.
 
@@ -40,7 +51,7 @@ class RegisterView(View):
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}')
 
-            return redirect(to='/')
+            return redirect(to='login')
 
         return render(request, self.template_name, {'form': form})
 
@@ -75,9 +86,12 @@ def deals(request):
     return render(request, 'viewDeals.html')
 
 
-@login_required
-def profile(request):
-    return render(request, 'users/profile.html')
+
+class ProfileView(ListView):
+    model = Profile
+    template_name = 'users/profile.html'
+    context_object_name = 'reservation'
+    
 
 
 @login_required
@@ -106,7 +120,52 @@ class DealsViewSet(viewsets.ModelViewSet):
 
 
 def new_reservation(request):
-    form = ReservationForm()
-    return render(request, 'users/reservation.html', {'form': form})
+    # form = ReservationForm()
+    return render(request, 'users/reservation.html')
+    # {'form': form}
 
 
+cl = MpesaClient()
+stk_push_callback_url = 'https://darajambili.herokuapp.com/express-payment'
+b2c_callback_url = 'https://darajambili.herokuapp.com/b2c/result'
+
+
+def test(request):
+
+	return HttpResponse('Welcome to the home of daraja APIs')
+
+
+def oauth_success(request):
+	r = cl.access_token()
+	return JsonResponse(r, safe=False)
+
+
+def stk_push_success(request):
+	phone_number = config('LNM_PHONE_NUMBER')
+	amount = 1
+	account_reference = config('TILL_NUMBER')
+	transaction_desc = 'Test transaction'
+	callback_url = stk_push_callback_url
+	r = cl.stk_push(phone_number, amount, account_reference,
+	                transaction_desc, callback_url)
+	return JsonResponse(r.response_description, safe=False)
+
+
+def reservation(request):
+    if request.method == 'POST':
+        form = ReservationForm(request.POST, instance=request.user)
+    
+        if form.is_valid():
+            form.save(commit=False)
+            form.user = request.user.profile
+            form.save()
+            messages.success(request, f'Reservation Successfully Created')
+            # prevents post get redirect pattern. sends a get request instead of post request
+            return redirect('profile')
+    else:
+        form = ReservationForm(instance=request.user)
+    context = {
+        'form': form,
+
+    }
+    return render(request, 'users/reservation.html', context)

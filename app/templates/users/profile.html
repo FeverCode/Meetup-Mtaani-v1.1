@@ -13,7 +13,8 @@
                             <div class="nav-end">
 
                                 <button class="btn">
-                                    <img class="rounded-circle account-img ms-4" src="{{user.profile.photo.url}}" alt="" id="profile-photo" width="150" height="150">
+                                    <img class="rounded-circle account-img ms-4" src="{{user.profile.photo.url}}" alt=""
+                                        id="profile-photo" width="150" height="150">
 
                                 </button>
                             </div>
@@ -39,13 +40,15 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{% url 'deals' %}" style="color: #A5694B;">
+                                <a class="nav-link active" aria-current="page" href="{% url 'reservation' %}"
+                                    style="color: #A5694B;">
                                     <span class="fas fa-th-list"></span>
                                     Add Reservation:
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{% url 'edit-profile' %}" style="color: #A5694B;">
+                                <a class="nav-link active" aria-current="page" href="{% url 'edit-profile' %}"
+                                    style="color: #A5694B;">
                                     <span class="fas fa-th-list"></span>
                                     Update account
                                 </a>
@@ -71,14 +74,17 @@
                     </div>
                     <div class="table-responsive-lg mt-4 mx-3">
                         <table class="table">
-                            {% comment %} {% for reservation in reservation %} {% endcomment %}
+                            {% for reservation in object_list %}
+                            {% if user.id == reservation.id %}
                             <tbody>
                                 <tr>
                                     <td>
                                         <div class="d-flex flex-column">
                                             <div class="blue-label">Email:{{user.email}} | Username: {{user.username}}
                                             </div>
-                                            <div class="fs-08">| Reserved for: | Deal: | Date: | Time: |
+                                            <div class="fs-08">| Reserved for:{{reservation.numberOfPeople}} |
+                                                Deal:{{reservation.deal}} | Date:{{reservation.date}} | Time:
+                                                {{reservation.time}}|
                                             </div>
                                         </div>
                                     </td>
@@ -95,7 +101,7 @@
                                                         <path
                                                             d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
                                                     </svg></a>
-                                                    <!--Update Reservation-->
+                                                <!--Update Reservation-->
                                                 <a href="#">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         fill="currentColor" class="bi bi-pencil-square"
@@ -111,7 +117,8 @@
                                     </td>
                                 </tr>
                             </tbody>
-                            {% comment %} {% endfor %} {% endcomment %}
+                            {% endif %}
+                            {% endfor %}
 
                         </table>
                     </div>

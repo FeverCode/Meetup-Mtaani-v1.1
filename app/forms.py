@@ -93,22 +93,15 @@ class UpdateProfileForm(forms.ModelForm):
         model = Profile
         fields = ['photo', 'bio']
 
+
 class ReservationForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['deal'].required = True
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['numberOfPeople'].required = True
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['date'].required = True
-        
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['time'].required = True
     class Meta:
         model = Reservation
-        fields = ['deal', 'numberOfPeople','date', 'time']
+        fields = ('deal', 'numberOfPeople','date', 'time')
+        
+        widgets = {
+                'deal': forms.Select(attrs={'class': 'form-control'}),
+                'date': forms.DateInput(attrs={'type': 'date'}),
+                'time': forms.TimeInput(attrs={'type': 'time'}),
+                'numberOfPeople': forms.NumberInput(attrs={'type': 'number'}),
+                }
