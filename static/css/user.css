@@ -24,13 +24,34 @@ body {
     background-color: rgba(255, 255, 255, 0.15);
     border-radius: 15px;
     min-height: 200px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 50em;
+    margin-bottom: 0;
     overflow: hidden;
     padding: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.6);
     border-left: 1px solid rgba(255, 255, 255, 0.6);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+#mine {
+    margin-left: 10em;
+    width: 100%;
+    
+}
+
+#at{
+    margin-left: 15em;
+
+}
+
+
+#mine1 {
+    width: 50em;
+}
+
+#mine2{
+    width: 70em;
+    
 }
 
 .container .header .navbar-brand {
