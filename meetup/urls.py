@@ -34,4 +34,5 @@ urlpatterns = [
     path('api-token-auth/', obtain_auth_token),
     url(r'^tests/', include(test_patterns)),
     path('api/v1/', include('mpesa_api.urls')),
+    path('paypal/', include('paypal.standard.ipn.urls')),
 ]

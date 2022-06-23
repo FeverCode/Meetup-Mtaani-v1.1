@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-axcqrrfq(%wz=_v7)5xjr_p=e7&#s=x+m(4mmp+#(jiw=tsb=f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['a8ee-197-211-27-126.in.ngrok.io', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['b998-197-211-27-126.in.ngrok.io', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'django_daraja',
     'mpesa_api.apps.MpesaApiConfig',
     'crispy_forms',
+    'paypal.standard.ipn',
+
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -100,7 +102,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'meetup',
         'USER': 'moringa',
-        'PASSWORD': 'bless',
+        'PASSWORD': 'Access',
         'HOST': 'localhost',
     }
 }
@@ -166,9 +168,9 @@ REST_FRAMEWORK = {
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 cloudinary.config(
-    cloud_name=config('CLOUDINARY_CLOUD_NAME'),
-    api_key=config('CLOUDINARY_API_KEY'),
-    api_secret=config('CLOUDINARY_API_SECRET'),
+    cloud_name=config('CD_NAME'),
+    api_key=config('CD_API_KEY'),
+    api_secret=config('CD_API_KEY_SECRET'),
     secure=True
 )
 
@@ -191,14 +193,14 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 30
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
 
-# # social auth configs for github
-# SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
-# SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET')
+# social auth configs for github
+SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET')
 
 
-# # social auth configs for google
-# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
-# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+# social auth configs for google
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
 # Email configurations remember to install python-decouple
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -249,3 +251,7 @@ MPESA_INITIATOR_USERNAME = config('INITIATOR_USERNAME')
 # Plaintext password for initiator (to be used in B2C, B2B, AccountBalance and TransactionStatusQuery Transactions)
 
 MPESA_INITIATOR_SECURITY_CREDENTIAL =config('INITIATOR_SECURITY_CREDENTIAL')
+
+PAYPAL_RECEIVER_EMAIL = 'sb-q1rrk17229802@business.example.com'
+
+PAYPAL_TEST = True

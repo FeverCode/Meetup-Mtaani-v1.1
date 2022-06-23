@@ -1,6 +1,4 @@
 from __future__ import unicode_literals
-from cgitb import reset
-from re import template
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views import View
