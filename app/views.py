@@ -84,12 +84,13 @@ def deals(request):
     return render(request, 'viewDeals.html')
 
 
+@login_required
+def user_profile(request):
+    profile = Profile.objects.all()
+    reservations = Reservation.objects.all().order_by('id').reverse()
+    return render(request, 'users/profile.html', {'profile': profile, 'reservations': reservations})
 
-class ProfileView(ListView):
-    model = Profile
-    template_name = 'users/profile.html'
-    context_object_name = 'reservation'
-    
+
 
 
 @login_required

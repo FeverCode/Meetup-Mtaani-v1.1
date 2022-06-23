@@ -1,12 +1,8 @@
-from ast import Pass
-from dataclasses import field
-from pyexpat import model
-from tokenize import Number
-from unittest.util import _MAX_LENGTH
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import *
+from django.core.validators import RegexValidator
 
 
 class RegisterForm(UserCreationForm):
@@ -30,6 +26,16 @@ class RegisterForm(UserCreationForm):
                              widget=forms.TextInput(attrs={'placeholder': 'Email',
                                                            'class': 'form-control',
                                                            }))
+    Tel = forms.EmailField(required=True,
+                             widget=forms.TextInput(attrs={'placeholder': 'Email',
+                                                           'class': 'form-control',
+                                                           }))
+    location = forms.CharField(max_length=100,
+                               required=True,
+                               widget=forms.TextInput(attrs={'placeholder': 'Location',
+                                                             'class': 'form-control',
+                                                             }))
+    
     password1 = forms.CharField(max_length=50,
                                 required=True,
                                 widget=forms.PasswordInput(attrs={'placeholder': 'Password',
@@ -48,7 +54,7 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'username',
-                  'email', 'password1', 'password2']
+                  'email', 'location', 'password1', 'password2']
 
 
 class LoginForm(AuthenticationForm):
@@ -85,22 +91,26 @@ class UpdateUserForm(forms.ModelForm):
 
 
 class UpdateProfileForm(forms.ModelForm):
+    
+
     photo = forms.ImageField(widget=forms.FileInput(
         attrs={'class': 'form-control-file'}))
-    phone_number = forms.IntegerField(
-                               required=True,
-                               widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    
+    
+    
     location = forms.CharField(max_length=100,
                                required=True,
                                widget=forms.TextInput(attrs={'class': 'form-control'}))
+    
 
     bio = forms.CharField(widget=forms.Textarea(
         attrs={'class': 'form-control', 'rows': 5}))
+
     
 
     class Meta:
         model = Profile
-        fields = ['photo', 'bio','phone_number','location']
+        fields = ['photo', 'bio','location']
 
 
 class ReservationForm(forms.ModelForm):

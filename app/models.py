@@ -1,10 +1,12 @@
 from __future__ import unicode_literals
+from queue import Empty
 from random import choices
 from unicodedata import name
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 from django.forms import ChoiceField
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 class Deals(models.Model):
@@ -63,9 +65,8 @@ class Profile(models.Model):
     email= models.EmailField(max_length=255)
     photo = CloudinaryField('image', default='https://res.cloudinary.com/fevercode/image/upload/v1654534329/default_n0r7rf.png')
     name = models.CharField(max_length=255, blank=True)
-    Tel = models.IntegerField(null=True, unique=True)
+    phone_number = PhoneNumberField(unique=True, null=False, blank=False)
     location = models.CharField(max_length=255 )
-    reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE, related_name='deals', null=True, blank=True)
     bio = models.TextField(max_length=500, default='This is my bio')
     
     

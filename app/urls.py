@@ -5,7 +5,7 @@ from django.urls import path, include
 
 from app.models import Profile
 from . import views
-from .views import RegisterView, CustomLoginView, ProfileView
+from .views import RegisterView, CustomLoginView
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm
 from django.conf.urls import url
@@ -27,7 +27,7 @@ urlpatterns = [
     path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='registration/password_reset_done.html'), name='password_reset_done'),
     path('password-reset-confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html'), name='password_reset_confirm'),
     path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'), name='password_reset_complete'),
-    path('profile/', ProfileView.as_view(), name='profile'),
+    path('profile/', views.user_profile, name='profile'),
     path('edit/profile/', views.edit_profile, name='edit-profile'),
     path('reservation/', views.reservation, name='reservation'),
     # path('profile/',ReservationView.as_view(), name='reservation-detail'),

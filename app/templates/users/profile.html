@@ -26,16 +26,16 @@
                                 </a>
                             </li>
                             </br>
-                            <!-- <li class="nav-item">
+                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page">
                                     <span class="fas fa-th-list"></span>
-                                    Home
+                                    {{user.phone_number}}
 
                                 </a>
                             </li>
                             <br>
 
-                            <li class="nav-item">
+                            <!--<li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="/" style="color: #A5694B;">
                                     <span class="fas fa-th-list"></span>
                                     
@@ -96,7 +96,7 @@
                     </div>
                     <div class="table-responsive-lg mt-4 mx-3">
                         <table class="table">
-                            {% for reservation in object_list %}
+                            {% for reservation in reservations %}
                             {% if user.id == reservation.id %}
                             <tbody>
                                 <tr>
