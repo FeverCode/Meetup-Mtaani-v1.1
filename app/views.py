@@ -95,14 +95,6 @@ def user_profile(request):
     reservations = Reservation.objects.all().order_by('id').reverse()
     return render(request, 'users/profile.html', {'profile': profile, 'reservations': reservations})
 
-# class ProfileListView(ListView):
-#     model = Reservation
-    
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['now'] = timezone.now()
-#         return context
-
 
 @login_required
 def edit_profile(request):
@@ -132,8 +124,8 @@ class DealsViewSet(viewsets.ModelViewSet):
 
 
 cl = MpesaClient()
-stk_push_callback_url = 'https://darajambili.herokuapp.com/express-payment'
-b2c_callback_url = 'https://darajambili.herokuapp.com/b2c/result'
+stk_push_callback_url = 'https://mtaani-meetup.herokuapp.com/'
+b2c_callback_url = 'https://mtaani-meetup.herokuapp.com/'
 
 
 def test(request):
@@ -156,25 +148,6 @@ def stk_push_success(request):
 	                transaction_desc, callback_url)
 	return JsonResponse(r.response_description, safe=False)
 
-# @login_required
-# def reservation(request):
-#     if request.method == 'POST':
-#         form = ReservationForm(request.POST, instance=request.user)
-    
-#         if form.is_valid():
-#             form.save(commit=False)
-#             form.user = request.user.profile
-#             form.save()
-#             messages.success(request, f'Reservation Successfully Created')
-#             # prevents post get redirect pattern. sends a get request instead of post request
-#             return redirect('profile')
-#     else:
-#         form = ReservationForm()
-#     context = {
-#         'form': form,
-
-#     }
-#     return render(request, 'users/reservation.html', context)
 
 class ReservationDeleteView(DeleteView):
     model = Reservation
@@ -197,14 +170,14 @@ class CreateReservationtView(LoginRequiredMixin, CreateView):
     template_name = 'users/reservation.html'
     success_url = reverse_lazy('profile')
 
-    #   ↓        ↓ method of the CreatePostView
+    #   ↓        ↓ method of the CreateReservationtView
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-    #   ↓              ↓ method of the CreatePostView
+    #   ↓              ↓ method of the CreateReservationtView
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
-        data['tag_line'] = 'Create new post'
+        data['tag_line'] = 'CreateReservationtView'
         return data

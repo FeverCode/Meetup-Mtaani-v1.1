@@ -32,10 +32,10 @@ urlpatterns = [
     path('<int:pk>/delete', ReservationDeleteView.as_view(),name='delete-reservation'),
     path('reservation/', CreateReservationtView.as_view(), name='reservation'),
     path('reservation/<int:pk>/',UpdateReservationView.as_view(), name='update-reservation'),
+    # path('daraja/stk-push', views.stk_push_callback, name='mpesa_stk_push_callback'),
     # path('', ReservationListView.as_view(), name='reservation-list'),
     # path('', ProfileListView.as_view(), name='profile-list'),
-    # path('daraja/stk-push/', views.stk_push_callback,name='mpesa_stk_push_callback'),
-
+    
 ]
 
 if settings.DEBUG:
