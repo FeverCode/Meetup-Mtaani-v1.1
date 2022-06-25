@@ -1,4 +1,3 @@
-import profile
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -117,3 +116,18 @@ class ReservationForm(forms.ModelForm):
                 'time': forms.TimeInput(attrs={'type': 'time'}),
                 'numberOfPeople': forms.NumberInput(attrs={'type': 'number'}),
                 }
+
+class MpesaForm(forms.Form):
+    
+    
+     phone_number = forms.IntegerField(validators=[RegexValidator(regex='^[0-9]{10}$')],
+                                 required=True,
+                                 widget=forms.TextInput(attrs={'placeholder': 'Phone Number',
+                                                               'class': 'form-control',
+                                                               }))
+     amount = forms.IntegerField(required=True,
+                                widget=forms.TextInput(attrs={'placeholder': 'amount',
+                                                              'class': 'form-control',
+                                                              }))
+     
+    
