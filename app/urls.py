@@ -35,6 +35,7 @@ urlpatterns = [
     # path('daraja/stk-push', views.stk_push_callback, name='mpesa_stk_push_callback'),
     # path('', ReservationListView.as_view(), name='reservation-list'),
     # path('', ProfileListView.as_view(), name='profile-list'),
+    path('test/', views.test, name='test'),
     
 ]
 
