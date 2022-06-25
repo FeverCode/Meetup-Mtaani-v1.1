@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.views import View
 from django.urls import reverse_lazy
 from app.models import Deals, Profile, Reservation
-from .forms import RegisterForm, LoginForm, UpdateUserForm, UpdateProfileForm, ReservationForm
+from .forms import MpesaForm, RegisterForm, LoginForm, UpdateUserForm, UpdateProfileForm, ReservationForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
@@ -115,10 +115,10 @@ def edit_profile(request):
     return render(request, 'users/edit-profile.html', {'user_form': user_form, 'profile_form': profile_form})
 
 
-class DealsViewSet(viewsets.ModelViewSet):
+class DealsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Deals.objects.all()
     serializer_class = DealsSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
 
 
@@ -129,8 +129,10 @@ b2c_callback_url = 'https://mtaani-meetup.herokuapp.com/'
 
 
 def test(request):
+    form = MpesaForm()
+    
 
-	return HttpResponse('Welcome to the home of daraja APIs')
+    return render (request,'test.html',{'form': form})
 
 
 def oauth_success(request):
@@ -139,16 +141,14 @@ def oauth_success(request):
 
 
 def stk_push_success(request):
-	phone_number = config('LNM_PHONE_NUMBER')
-	amount = 1
-	account_reference = config('TILL_NUMBER')
-	transaction_desc = 'Test transaction'
-	callback_url = stk_push_callback_url
-	r = cl.stk_push(phone_number, amount, account_reference,
-	                transaction_desc, callback_url)
-	return JsonResponse(r.response_description, safe=False)
-
-
+        phone_number = config('LNM_PHONE_NUMBER')
+        amount = 1
+        account_reference = config('TILL_NUMBER')
+        transaction_desc = 'STK Push Description'
+        callback_url = stk_push_callback_url
+        r = cl.stk_push(phone_number, amount, account_reference,transaction_desc,callback_url)
+        return JsonResponse(r.response_description, safe=False)
+    
 class ReservationDeleteView(DeleteView):
     model = Reservation
     template_name = 'delete.html'

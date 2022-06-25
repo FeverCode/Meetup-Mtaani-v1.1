@@ -18,6 +18,7 @@ from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
 from app import views
 from django.conf.urls import url
+from mpesa.urls import mpesa_urls
 
 
 test_patterns = [
@@ -30,9 +31,9 @@ test_patterns = [
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("app.urls")),
-    path('', views.test,),
     path('api-token-auth/', obtain_auth_token),
-    url(r'^tests/', include(test_patterns)),
+    url(r'^test/tests/', include(test_patterns)),
     path('api/v1/', include('mpesa_api.urls')),
     path('paypal/', include('paypal.standard.ipn.urls')),
+    path('mpesa/', include(mpesa_urls)),
 ]
