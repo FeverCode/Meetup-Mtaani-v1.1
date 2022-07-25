@@ -33,7 +33,6 @@ urlpatterns = [
     path('', include("app.urls")),
     path('api-token-auth/', obtain_auth_token),
     url(r'^test/tests/', include(test_patterns)),
-    path('api/v1/', include('mpesa_api.urls')),
     path('paypal/', include('paypal.standard.ipn.urls')),
     path('mpesa/', include(mpesa_urls)),
 ]
