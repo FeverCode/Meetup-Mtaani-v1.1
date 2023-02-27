@@ -107,7 +107,7 @@ if config('MODE') == "dev":
            'USER': config('DB_USER'),
            'PASSWORD': config('DB_PASSWORD'),
            'HOST': config('DB_HOST'),
-           'PORT': '7117',
+           'PORT': '5502',
        }
 
    }
@@ -255,3 +255,6 @@ MPESA_CONFIG = {
 PAYPAL_RECEIVER_EMAIL = 'sb-q1rrk17229802@business.example.com'
 
 PAYPAL_TEST = True
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SECURE_SSL_REDIRECT = True
